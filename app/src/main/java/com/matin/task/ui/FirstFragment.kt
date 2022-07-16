@@ -5,21 +5,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.matin.task.adapter.FeedAdapter
+import com.matin.task.data.MainViewModel
 import com.matin.task.databinding.FragmentFirstBinding
+import com.matin.task.model.ApiResponse
 import com.matin.task.model.Docs
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.catch
 
-
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
+@AndroidEntryPoint
 class FirstFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
 
-//    val viewModel by viewModels()
+    private val viewModel: MainViewModel by viewModels()
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -35,12 +37,22 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launchWhenStarted {
+            viewModel.getFeeds()
+                .catch {
 
+                }
+                .collect{
+                    handleResponse(it)
+                }
         }
 
     }
 
-    fun setAdapter(feeds: ArrayList<Docs>) {
+    private fun handleResponse(response: ApiResponse) {
+        setAdapter(response.docs)
+    }
+
+    private fun setAdapter(feeds: ArrayList<Docs>) {
         val adapter = FeedAdapter(feeds)
         binding.feedRecyclerview.layoutManager = GridLayoutManager(requireContext(), 1)
         binding.feedRecyclerview.adapter = adapter
