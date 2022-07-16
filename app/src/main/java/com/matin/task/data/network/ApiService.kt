@@ -6,25 +6,24 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-class ApiService {
+class Api {
 
     companion object {
 
         var BASE_URL = "https://evolute-test-db.herokuapp.com/api/"
 
-        fun create() : ApiInterface {
+        private val retrofit: Retrofit = Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(BASE_URL)
+            .build()
 
-            val retrofit = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(BASE_URL)
-                .build()
-            return retrofit.create(ApiInterface::class.java)
-
+        fun create() : ApiService {
+            return retrofit.create(ApiService::class.java)
         }
     }
 }
 
-interface ApiInterface {
+interface ApiService {
     @GET("feed/")
     fun getFeeds(
         @Query("page") page: Int,
