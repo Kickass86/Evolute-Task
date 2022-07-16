@@ -16,7 +16,7 @@
     <ImageView
         android:id="@+id/picture"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:scaleType="fitXY"
         app:layout_constraintTop_toBottomOf="@id/author"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,10 +35,11 @@
 
     <TextView
         android:id="@+id/manufacture"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         app:layout_constraintStart_toEndOf="@id/verified"
+        app:layout_constraintEnd_toStartOf="@id/manufacture_type"
         app:layout_constraintTop_toBottomOf="@id/picture"
         />
 
@@ -53,10 +54,11 @@
 
     <TextView
         android:id="@+id/answer"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/manufacture"
         />
 
