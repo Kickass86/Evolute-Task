@@ -25,7 +25,7 @@ class Api {
 
 interface ApiService {
     @GET("feed/")
-    fun getFeeds(
+    suspend fun getFeeds(
         @Query("page") page: Int,
         @Query("limit") limit: Int,
     ) : ApiResponse
