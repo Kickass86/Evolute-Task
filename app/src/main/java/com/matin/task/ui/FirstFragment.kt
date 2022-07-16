@@ -1,4 +1,4 @@
-package com.matin.task
+package com.matin.task.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

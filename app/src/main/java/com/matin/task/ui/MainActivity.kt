@@ -1,4 +1,4 @@
-package com.matin.task
+package com.matin.task.ui
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
@@ -9,6 +9,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import com.matin.task.R
 import com.matin.task.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
