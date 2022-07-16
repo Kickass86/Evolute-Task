@@ -1,4 +1,4 @@
-package com.matin.task
+package com.matin.task.data
 
 import androidx.lifecycle.ViewModel
 import com.matin.task.data.network.ApiService
