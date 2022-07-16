@@ -1,12 +1,16 @@
 package com.matin.task.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.matin.task.adapter.FeedAdapter
 import com.matin.task.databinding.FragmentFirstBinding
+import com.matin.task.model.Docs
+
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -33,6 +37,12 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+    }
+
+    fun setAdapter(feeds: ArrayList<Docs>) {
+        val adapter = FeedAdapter(feeds)
+        binding.feedRecyclerview.layoutManager = GridLayoutManager(requireContext(), 1)
+        binding.feedRecyclerview.adapter = adapter
     }
 
     override fun onDestroyView() {
